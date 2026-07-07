@@ -1,0 +1,203 @@
+"use client";
+
+import { useState, FormEvent } from "react";
+import { motion } from "framer-motion";
+import { Mail, MapPin, Send, CheckCircle2, Instagram, Youtube, Twitter } from "lucide-react";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Button from "@/components/ui/Button";
+
+const socials = [
+  { icon: Youtube, href: "https://youtube.com/@roadsidevlogger", label: "YouTube" },
+  { icon: Instagram, href: "https://instagram.com/roadsidevlogger", label: "Instagram" },
+  { icon: Twitter, href: "https://twitter.com/roadsidevlogger", label: "Twitter" },
+];
+
+export default function Contact() {
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("sending");
+    // Replace with real submission endpoint (e.g. an API route or form service)
+    await new Promise((resolve) => setTimeout(resolve, 1200));
+    setStatus("sent");
+  };
+
+  return (
+    <section id="contact" className="bg-cream-100 py-24 dark:bg-asphalt-950 sm:py-32">
+      <div className="container-luxe">
+        <SectionHeading
+          eyebrow="Get in Touch"
+          title="Let's Plan the Next Road"
+          description="Available for brand partnerships, destination features, and speaking engagements. Usually replies within 48 hours, wherever the signal allows."
+        />
+
+        <div className="grid gap-10 lg:grid-cols-2">
+          <motion.form
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            onSubmit={handleSubmit}
+            className="rounded-2xl bg-white p-8 shadow-luxury dark:bg-asphalt-800"
+          >
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label
+                  htmlFor="name"
+                  className="mb-1.5 block text-sm font-medium text-asphalt-950 dark:text-cream-50"
+                >
+                  Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  placeholder="Jordan Ramirez"
+                  className="w-full rounded-lg border border-steel-500/20 bg-cream-50 px-4 py-3 text-asphalt-950 outline-none transition focus:border-ember-500 dark:bg-asphalt-900 dark:text-cream-50"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="mb-1.5 block text-sm font-medium text-asphalt-950 dark:text-cream-50"
+                >
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="jordan@studio.com"
+                  className="w-full rounded-lg border border-steel-500/20 bg-cream-50 px-4 py-3 text-asphalt-950 outline-none transition focus:border-ember-500 dark:bg-asphalt-900 dark:text-cream-50"
+                />
+              </div>
+            </div>
+
+            <div className="mt-5">
+              <label
+                htmlFor="subject"
+                className="mb-1.5 block text-sm font-medium text-asphalt-950 dark:text-cream-50"
+              >
+                Subject
+              </label>
+              <input
+                id="subject"
+                name="subject"
+                type="text"
+                required
+                placeholder="Brand partnership inquiry"
+                className="w-full rounded-lg border border-steel-500/20 bg-cream-50 px-4 py-3 text-asphalt-950 outline-none transition focus:border-ember-500 dark:bg-asphalt-900 dark:text-cream-50"
+              />
+            </div>
+
+            <div className="mt-5">
+              <label
+                htmlFor="message"
+                className="mb-1.5 block text-sm font-medium text-asphalt-950 dark:text-cream-50"
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows={5}
+                placeholder="Tell me about the project, timeline, and destination..."
+                className="w-full resize-none rounded-lg border border-steel-500/20 bg-cream-50 px-4 py-3 text-asphalt-950 outline-none transition focus:border-ember-500 dark:bg-asphalt-900 dark:text-cream-50"
+              />
+            </div>
+
+            <Button
+              type="submit"
+              size="lg"
+              className="mt-6 w-full"
+              disabled={status !== "idle"}
+              icon={
+                status === "sent" ? (
+                  <CheckCircle2 size={18} />
+                ) : (
+                  <Send size={18} />
+                )
+              }
+            >
+              {status === "idle" && "Send Message"}
+              {status === "sending" && "Sending..."}
+              {status === "sent" && "Message Sent"}
+            </Button>
+          </motion.form>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="flex flex-col gap-6"
+          >
+            <div className="overflow-hidden rounded-2xl shadow-luxury">
+              <iframe
+                title="Current base location map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.999!2d-9.1393!3d38.7223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDQzJzIwLjMiTiA5wrA4JzIxLjUiVw!5e0!3m2!1sen!2spt"
+                width="100%"
+                height="260"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+
+            <div className="rounded-2xl bg-white p-8 shadow-luxury dark:bg-asphalt-800">
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ember-500/10 text-ember-500">
+                  <Mail size={20} />
+                </div>
+                <div>
+                  <p className="font-heading font-semibold text-asphalt-950 dark:text-cream-50">
+                    Email
+                  </p>
+                  <a
+                    href="mailto:hello@roadsidevlogger.com"
+                    className="text-steel-500 transition hover:text-ember-500 dark:text-steel-300"
+                  >
+                    hello@roadsidevlogger.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="mt-6 flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ember-500/10 text-ember-500">
+                  <MapPin size={20} />
+                </div>
+                <div>
+                  <p className="font-heading font-semibold text-asphalt-950 dark:text-cream-50">
+                    Currently Based
+                  </p>
+                  <p className="text-steel-500 dark:text-steel-300">
+                    On the road — Southeast Asia (2026)
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-8 flex gap-3">
+                {socials.map(({ icon: Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-steel-500/20 text-steel-500 transition hover:border-ember-500 hover:text-ember-500 dark:text-steel-300"
+                  >
+                    <Icon size={19} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
