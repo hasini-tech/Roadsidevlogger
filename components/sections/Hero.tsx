@@ -13,8 +13,8 @@ export default function Hero() {
     >
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1920&q=80"
-          alt="Empty mountain road disappearing into pine forest at golden hour"
+          src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&q=80"
+          alt="Digital marketing team planning a brand campaign"
           fill
           priority
           sizes="100vw"
@@ -24,20 +24,6 @@ export default function Hero() {
         <div className="absolute inset-0 bg-asphalt-950/30" />
       </div>
 
-      {/* Floating decorative elements */}
-      <motion.div
-        aria-hidden
-        animate={{ y: [0, -16, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-[8%] top-[22%] hidden h-24 w-24 rounded-full bg-ember-500/20 blur-2xl sm:block"
-      />
-      <motion.div
-        aria-hidden
-        animate={{ y: [0, 20, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute right-[10%] top-[38%] hidden h-32 w-32 rounded-full bg-gold-400/20 blur-3xl sm:block"
-      />
-
       <div className="container-luxe relative z-10 flex flex-col items-center text-center">
         <motion.span
           initial={{ opacity: 0, y: 12 }}
@@ -45,7 +31,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-5 inline-flex items-center gap-2 rounded-full border border-cream-100/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-cream-100/80"
         >
-          42 Countries &middot; 186,000 KM &middot; One Road at a Time
+          Divith Digital Marketing &middot; Creative Ideas &middot; Measurable Results
         </motion.span>
 
         <motion.h1
@@ -54,10 +40,10 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.35 }}
           className="text-balance font-heading text-5xl font-extrabold leading-[1.05] text-cream-50 sm:text-6xl md:text-7xl lg:text-8xl"
         >
-          Exploring Every
+          We Create Impact
           <br />
           <span className="bg-ember-gradient bg-clip-text text-transparent">
-            Road Has a Story
+          Not Just Impressions.
           </span>
         </motion.h1>
 
@@ -67,9 +53,8 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.5 }}
           className="mt-6 max-w-xl text-balance text-lg leading-relaxed text-cream-100/80 sm:text-xl"
         >
-          Cinematic overland travel films, unscripted encounters, and the
-          long, quiet miles in between — filmed solo from the driver&apos;s
-          seat since 2019.
+          We don&apos;t just market brands. We build digital success stories
+          through creativity, strategy, and performance-driven marketing.
         </motion.p>
 
         <motion.div
@@ -87,7 +72,7 @@ export default function Hero() {
                 ?.scrollIntoView({ behavior: "smooth" })
             }
           >
-            Watch the Films
+            Explore Services
           </Button>
           <Button
             variant="outline"
@@ -98,7 +83,7 @@ export default function Hero() {
                 ?.scrollIntoView({ behavior: "smooth" })
             }
           >
-            My Story
+            Why Choose Us
           </Button>
         </motion.div>
       </div>

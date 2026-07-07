@@ -11,9 +11,9 @@ export default function Timeline() {
     <section id="timeline" className="relative bg-white py-24 dark:bg-asphalt-900 sm:py-32">
       <div className="container-luxe">
         <SectionHeading
-          eyebrow="The Journey So Far"
-          title="Mile Markers of the Road"
-          description="Each stop is a real waypoint — the mileage is cumulative, tracked from the day the first tank of gas was bought."
+          eyebrow="How We Build Growth"
+          title="Strategy-First. Results-Focused."
+          description="Every campaign is thoughtfully designed to achieve your business goals, not just generate clicks."
         />
 
         <div className="relative mx-auto max-w-3xl">
@@ -60,7 +60,7 @@ export default function Timeline() {
                   {stop.description}
                 </p>
                 <p className="mt-2 text-xs font-medium text-steel-400">
-                  {stop.distanceKm.toLocaleString()} km cumulative
+                  Step {stop.distanceKm.toLocaleString()} of the growth plan
                 </p>
               </div>
 

@@ -3,7 +3,13 @@ export interface VideoItem {
   title: string;
   thumbnail: string;
   location: string;
-  category: "Road Trip" | "Off-Road" | "City Drive" | "Coastal Route" | "Mountain Pass";
+  category:
+    | "Social Media"
+    | "Performance"
+    | "Content"
+    | "Video"
+    | "Creator Marketing"
+    | "Branding";
   duration: string;
   views: string;
   youtubeId: string;
@@ -24,7 +30,7 @@ export interface GalleryImage {
   id: string;
   src: string;
   alt: string;
-  category: "Landscapes" | "Roads" | "People" | "Camp Life" | "Vehicles";
+  category: "Restaurant" | "Retail" | "Jewelry" | "Real Estate" | "Manufacturing" | "Cinema";
   location: string;
   width: number;
   height: number;

@@ -11,8 +11,8 @@ export default function Testimonials() {
     <section className="relative overflow-hidden bg-gradient-to-b from-cream-100 to-cream-50 py-24 dark:from-asphalt-900 dark:to-asphalt-950 sm:py-32">
       <div className="container-luxe">
         <SectionHeading
-          eyebrow="Partner Feedback"
-          title="What Brands and Producers Say"
+          eyebrow="Client Feedback"
+          title="What Growth Partners Say"
         />
 
         <div className="grid gap-8 md:grid-cols-3">

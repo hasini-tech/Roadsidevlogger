@@ -1,16 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Youtube, Users, Eye, Film } from "lucide-react";
+import { BarChart3, Layers3, Sparkles, Users } from "lucide-react";
 import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import { youtubeStats, featuredVideos } from "@/lib/data";
 
 const statCards = [
-  { icon: Users, label: "Subscribers", value: youtubeStats.subscribers },
-  { icon: Eye, label: "Total Views", value: youtubeStats.totalViews },
-  { icon: Film, label: "Videos", value: youtubeStats.videoCount.toString() },
+  { icon: Layers3, label: "Solutions", value: youtubeStats.subscribers },
+  { icon: BarChart3, label: "Strategy", value: `${youtubeStats.totalViews}°` },
+  { icon: Sparkles, label: "Creative Focus", value: `${youtubeStats.videoCount}%` },
 ];
 
 export default function YouTubeSection() {
@@ -20,8 +20,8 @@ export default function YouTubeSection() {
     <section className="bg-asphalt-950 py-24 sm:py-32">
       <div className="container-luxe">
         <SectionHeading
-          eyebrow="On YouTube"
-          title="Subscribe for New Roads Every Week"
+          eyebrow="Why Brands Choose DDM"
+          title="Complete Digital Solutions Under One Roof"
           light
         />
 
@@ -71,10 +71,14 @@ export default function YouTubeSection() {
         <div className="mt-12 flex justify-center">
           <Button
             size="lg"
-            icon={<Youtube size={20} />}
-            onClick={() => window.open(youtubeStats.channelUrl, "_blank")}
+            icon={<Users size={20} />}
+            onClick={() =>
+              document
+                .querySelector("#contact")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
           >
-            Visit the Channel
+            Start a Growth Conversation
           </Button>
         </div>
       </div>

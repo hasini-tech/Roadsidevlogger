@@ -51,7 +51,7 @@ export default function Navbar() {
           className="flex items-center gap-2 font-heading text-xl font-bold text-asphalt-950 dark:text-cream-50"
         >
           <Compass className="text-ember-500" size={24} />
-          Roadside<span className="text-ember-500">.</span>
+          DDM<span className="text-ember-500">.</span>
         </Link>
 
         <ul className="hidden items-center gap-8 lg:flex">
@@ -73,7 +73,7 @@ export default function Navbar() {
             size="sm"
             onClick={() => handleNavClick("#contact")}
           >
-            Work With Me
+            Work With Us
           </Button>
         </div>
 

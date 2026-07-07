@@ -11,9 +11,9 @@ export default function Blog() {
     <section id="blog" className="bg-white py-24 dark:bg-asphalt-900 sm:py-32">
       <div className="container-luxe">
         <SectionHeading
-          eyebrow="Field Notes"
-          title="Stories From the Road, Written Down"
-          description="The longer-form thoughts that don't fit in a video description — gear, logistics, and lessons from the miles."
+          eyebrow="Insights"
+          title="Ideas for Smarter Digital Growth"
+          description="Practical thinking on strategy, content, performance marketing, and brand storytelling."
         />
 
         <div className="grid gap-8 lg:grid-cols-3">
@@ -55,7 +55,7 @@ export default function Blog() {
                   {post.excerpt}
                 </p>
                 <span className="mt-5 inline-flex items-center gap-1 font-heading text-sm font-semibold text-ember-500">
-                  Read the story
+                  Read the insight
                   <ArrowUpRight
                     size={16}
                     className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"

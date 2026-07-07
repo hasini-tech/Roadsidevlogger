@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { Compass, Instagram, Youtube, Twitter, Facebook } from "lucide-react";
+import { Compass, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import { navLinks } from "@/lib/data";
 
 const socials = [
-  { icon: Youtube, href: "https://youtube.com/@roadsidevlogger", label: "YouTube" },
-  { icon: Instagram, href: "https://instagram.com/roadsidevlogger", label: "Instagram" },
-  { icon: Twitter, href: "https://twitter.com/roadsidevlogger", label: "Twitter" },
-  { icon: Facebook, href: "https://facebook.com/roadsidevlogger", label: "Facebook" },
+  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+  { icon: Youtube, href: "https://youtube.com", label: "YouTube" },
+  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+  { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
 ];
 
 export default function Footer() {
@@ -19,11 +19,12 @@ export default function Footer() {
             className="flex items-center gap-2 font-heading text-xl font-bold text-cream-50"
           >
             <Compass className="text-ember-500" size={22} />
-            Roadside<span className="text-ember-500">.</span>
+            DDM<span className="text-ember-500">.</span>
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-cream-100/60">
-            Cinematic overland travel films from 42 countries and counting.
-            Every road has a story — this is where I tell them.
+            Divith Digital Marketing creates digital success stories through
+            strategy, content, performance marketing, branding, and visual
+            storytelling.
           </p>
         </div>
 
@@ -47,14 +48,14 @@ export default function Footer() {
             Contact
           </h3>
           <ul className="mt-4 space-y-3 text-sm text-cream-100/60">
-            <li>hello@roadsidevlogger.com</li>
-            <li>Booking &amp; brand partnerships available</li>
+            <li>hello@divithdigitalmarketing.com</li>
+            <li>Brand strategy, social media, content, and performance campaigns</li>
           </ul>
         </div>
 
         <div>
           <h3 className="font-heading text-sm font-semibold uppercase tracking-wider text-cream-50">
-            Follow the Journey
+            Follow DDM
           </h3>
           <div className="mt-4 flex gap-3">
             {socials.map(({ icon: Icon, href, label }) => (
@@ -75,7 +76,7 @@ export default function Footer() {
 
       <div className="border-t border-cream-100/10 py-6">
         <p className="container-luxe text-center text-xs text-cream-100/40">
-          © {new Date().getFullYear()} Roadside Vlogger. All rights reserved.
+          &copy; {new Date().getFullYear()} Divith Digital Marketing. All rights reserved.
         </p>
       </div>
     </footer>

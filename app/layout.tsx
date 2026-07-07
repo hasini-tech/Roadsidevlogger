@@ -22,38 +22,38 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteUrl = "https://roadsidevlogger.com";
+const siteUrl = "https://divithdigitalmarketing.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Roadside Vlogger — Exploring Every Road Has a Story",
-    template: "%s | Roadside Vlogger",
+    default: "Divith Digital Marketing - We Create Impact",
+    template: "%s | Divith Digital Marketing",
   },
   description:
-    "Cinematic overland travel films, photography, and field notes from 42 countries and 186,000 kilometers of road. Follow the journey.",
+    "Divith Digital Marketing builds digital success stories through creative strategy, social media growth, performance marketing, content, branding, and visual storytelling.",
   keywords: [
-    "travel vlogger",
-    "overlanding",
-    "road trip films",
-    "travel photography",
-    "cinematic travel videos",
+    "digital marketing",
+    "performance marketing",
+    "social media marketing",
+    "brand storytelling",
+    "content creation",
   ],
-  authors: [{ name: "Roadside Vlogger" }],
+  authors: [{ name: "Divith Digital Marketing" }],
   openGraph: {
-    title: "Roadside Vlogger — Exploring Every Road Has a Story",
+    title: "Divith Digital Marketing - We Create Impact",
     description:
-      "Cinematic overland travel films, photography, and field notes from 42 countries and 186,000 kilometers of road.",
+      "Creative ideas, smart strategy, and measurable results for brands that want to stand out, connect, and grow.",
     url: siteUrl,
-    siteName: "Roadside Vlogger",
+    siteName: "Divith Digital Marketing",
     type: "website",
     images: [{ url: "/images/og-cover.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Roadside Vlogger — Exploring Every Road Has a Story",
+    title: "Divith Digital Marketing - We Create Impact",
     description:
-      "Cinematic overland travel films, photography, and field notes from the road.",
+      "Creative strategy, performance marketing, branding, content, and visual storytelling under one roof.",
     images: ["/images/og-cover.jpg"],
   },
   robots: { index: true, follow: true },

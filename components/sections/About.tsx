@@ -2,26 +2,31 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Fuel, MapPin, Video } from "lucide-react";
+import { BarChart3, Handshake, Lightbulb, Target } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import { stats } from "@/lib/data";
 
 const highlights = [
   {
-    icon: MapPin,
-    title: "42 Countries, Zero Fixed Route",
-    text: "From the Sahara to the Siberian steppe — the plan has always been to have no plan, only a full tank and a camera.",
+    icon: Lightbulb,
+    title: "Creative Excellence",
+    text: "Innovative ideas that make your brand stand out with memorable content, visuals, and storytelling.",
   },
   {
-    icon: Video,
-    title: "Solo Cinematography",
-    text: "Every frame filmed alone from the driver's seat: gimbal, drone, and a three-shot rule that turns empty roads into stories.",
+    icon: Target,
+    title: "Strategic Growth",
+    text: "Customized strategies designed for long-term success, stronger visibility, and meaningful audience connection.",
   },
   {
-    icon: Fuel,
-    title: "312 Films, One Truck",
-    text: "The same 1994 Land Cruiser has carried the whole archive — engine rebuilds included — across six continents.",
+    icon: BarChart3,
+    title: "Result-Oriented Marketing",
+    text: "Data-driven campaigns focused on real business outcomes, lead quality, sales, and return on investment.",
+  },
+  {
+    icon: Handshake,
+    title: "Trusted Partnerships",
+    text: "Lasting relationships built through transparent communication, quality work, and committed support.",
   },
 ];
 
@@ -38,36 +43,34 @@ export default function About() {
         >
           <div className="relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-3xl shadow-luxury-lg">
             <Image
-              src="https://images.unsplash.com/photo-1500048993953-d23a436266cf?w=800&q=80"
-              alt="Portrait of the roadside vlogger beside an overland truck at sunset"
+              src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80"
+              alt="Marketing team collaborating on a digital growth plan"
               fill
               sizes="(max-width: 768px) 100vw, 480px"
               className="object-cover"
             />
           </div>
           <div className="absolute -bottom-8 -right-6 hidden rounded-2xl bg-ember-gradient p-6 shadow-luxury sm:block">
-            <p className="font-heading text-3xl font-extrabold text-asphalt-950">7yrs</p>
-            <p className="text-sm font-medium text-asphalt-950/80">On the road</p>
+            <p className="font-heading text-3xl font-extrabold text-asphalt-950">360</p>
+            <p className="text-sm font-medium text-asphalt-950/80">Growth mindset</p>
           </div>
         </motion.div>
 
         <div>
           <SectionHeading
-            eyebrow="Who's Behind the Wheel"
-            title="I Traded a Desk for a Dashboard"
+            eyebrow="About DDM"
+            title="More Than a Marketing Agency"
             align="left"
           />
           <p className="text-lg leading-relaxed text-steel-500 dark:text-steel-300">
-            In 2019 I sold an apartment in Lisbon, bought a secondhand Land
-            Cruiser, and drove east with no return date. What started as one
-            video from a gas station in Marrakech became a full-time practice
-            of slow travel and cinematic storytelling — one border crossing,
-            one mountain pass, one roadside conversation at a time.
+            At Divith Digital Marketing, we combine creativity, strategy, and
+            performance-driven marketing to help businesses stand out in the
+            digital world.
           </p>
           <p className="mt-4 text-lg leading-relaxed text-steel-500 dark:text-steel-300">
-            Today the channel is home to nearly a million people who tune in
-            not for polish, but for the honest, unscripted texture of life on
-            the move.
+            From building powerful brand identities to generating quality leads
+            and increasing online visibility, we create customized marketing
+            solutions designed to deliver real business growth.
           </p>
 
           <div className="mt-10 space-y-6">

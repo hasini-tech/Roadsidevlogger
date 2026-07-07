@@ -7,9 +7,9 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 
 const socials = [
-  { icon: Youtube, href: "https://youtube.com/@roadsidevlogger", label: "YouTube" },
-  { icon: Instagram, href: "https://instagram.com/roadsidevlogger", label: "Instagram" },
-  { icon: Twitter, href: "https://twitter.com/roadsidevlogger", label: "Twitter" },
+  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+  { icon: Youtube, href: "https://youtube.com", label: "YouTube" },
+  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
 ];
 
 export default function Contact() {
@@ -28,8 +28,8 @@ export default function Contact() {
       <div className="container-luxe">
         <SectionHeading
           eyebrow="Get in Touch"
-          title="Let's Plan the Next Road"
-          description="Available for brand partnerships, destination features, and speaking engagements. Usually replies within 48 hours, wherever the signal allows."
+          title="Let's Build Something Extraordinary Together"
+          description="Share your brand goals, campaign needs, or growth challenge. DDM can help with strategy, content, performance marketing, branding, and visual storytelling."
         />
 
         <div className="grid gap-10 lg:grid-cols-2">
@@ -54,7 +54,7 @@ export default function Contact() {
                   name="name"
                   type="text"
                   required
-                  placeholder="Jordan Ramirez"
+                  placeholder="Your name"
                   className="w-full rounded-lg border border-steel-500/20 bg-cream-50 px-4 py-3 text-asphalt-950 outline-none transition focus:border-ember-500 dark:bg-asphalt-900 dark:text-cream-50"
                 />
               </div>
@@ -70,7 +70,7 @@ export default function Contact() {
                   name="email"
                   type="email"
                   required
-                  placeholder="jordan@studio.com"
+                  placeholder="you@company.com"
                   className="w-full rounded-lg border border-steel-500/20 bg-cream-50 px-4 py-3 text-asphalt-950 outline-none transition focus:border-ember-500 dark:bg-asphalt-900 dark:text-cream-50"
                 />
               </div>
@@ -88,7 +88,7 @@ export default function Contact() {
                 name="subject"
                 type="text"
                 required
-                placeholder="Brand partnership inquiry"
+                placeholder="Digital marketing inquiry"
                 className="w-full rounded-lg border border-steel-500/20 bg-cream-50 px-4 py-3 text-asphalt-950 outline-none transition focus:border-ember-500 dark:bg-asphalt-900 dark:text-cream-50"
               />
             </div>
@@ -105,7 +105,7 @@ export default function Contact() {
                 name="message"
                 required
                 rows={5}
-                placeholder="Tell me about the project, timeline, and destination..."
+                placeholder="Tell us about your business, goals, timeline, and the services you need..."
                 className="w-full resize-none rounded-lg border border-steel-500/20 bg-cream-50 px-4 py-3 text-asphalt-950 outline-none transition focus:border-ember-500 dark:bg-asphalt-900 dark:text-cream-50"
               />
             </div>
@@ -138,7 +138,7 @@ export default function Contact() {
           >
             <div className="overflow-hidden rounded-2xl shadow-luxury">
               <iframe
-                title="Current base location map"
+                title="Divith Digital Marketing location map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.999!2d-9.1393!3d38.7223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDQzJzIwLjMiTiA5wrA4JzIxLjUiVw!5e0!3m2!1sen!2spt"
                 width="100%"
                 height="260"
@@ -158,10 +158,10 @@ export default function Contact() {
                     Email
                   </p>
                   <a
-                    href="mailto:hello@roadsidevlogger.com"
+                    href="mailto:hello@divithdigitalmarketing.com"
                     className="text-steel-500 transition hover:text-ember-500 dark:text-steel-300"
                   >
-                    hello@roadsidevlogger.com
+                    hello@divithdigitalmarketing.com
                   </a>
                 </div>
               </div>
@@ -172,10 +172,10 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="font-heading font-semibold text-asphalt-950 dark:text-cream-50">
-                    Currently Based
+                    Available For
                   </p>
                   <p className="text-steel-500 dark:text-steel-300">
-                    On the road — Southeast Asia (2026)
+                    Brand strategy, social media marketing, content creation, video production, and performance campaigns
                   </p>
                 </div>
               </div>

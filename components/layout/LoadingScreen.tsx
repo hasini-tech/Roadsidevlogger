@@ -33,7 +33,7 @@ export default function LoadingScreen() {
             transition={{ delay: 0.3 }}
             className="font-heading text-sm uppercase tracking-[0.3em] text-cream-100/70"
           >
-            Loading the journey
+            Loading DDM
           </motion.p>
         </motion.div>
       )}

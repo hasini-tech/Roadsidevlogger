@@ -12,11 +12,12 @@ import { GalleryImage } from "@/types";
 
 const categories: Array<GalleryImage["category"] | "All"> = [
   "All",
-  "Landscapes",
-  "Roads",
-  "People",
-  "Camp Life",
-  "Vehicles",
+  "Restaurant",
+  "Retail",
+  "Jewelry",
+  "Real Estate",
+  "Manufacturing",
+  "Cinema",
 ];
 
 export default function Gallery() {
@@ -35,9 +36,9 @@ export default function Gallery() {
     <section id="gallery" className="bg-cream-100 py-24 dark:bg-asphalt-950 sm:py-32">
       <div className="container-luxe">
         <SectionHeading
-          eyebrow="Through the Lens"
-          title="Photography From the Field"
-          description="Every frame shot on location — no stock, no staging, just what was in front of the lens that day."
+          eyebrow="Success Stories"
+          title="Every Brand Has a Story. We Bring It to Life."
+          description="From restaurants and retail to jewelry, real estate, manufacturing, and multiplex cinemas, every project reflects creativity, strategy, and measurable impact."
         />
 
         <div className="mb-10 flex flex-wrap justify-center gap-3">

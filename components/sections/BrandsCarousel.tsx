@@ -7,7 +7,7 @@ export default function BrandsCarousel() {
     <section className="border-y border-steel-500/10 bg-cream-50 py-14 dark:bg-asphalt-900">
       <div className="container-luxe mb-8 text-center">
         <p className="font-heading text-sm font-semibold uppercase tracking-[0.2em] text-steel-500 dark:text-steel-300">
-          Trusted by Brands on the Road
+          Industries We Help Grow
         </p>
       </div>
 
