@@ -1,10 +1,10 @@
 "use client";
 
-import { ButtonHTMLAttributes, ReactNode } from "react";
-import { motion } from "framer-motion";
+import { ReactNode } from "react";
+import { HTMLMotionProps, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends Omit<HTMLMotionProps<"button">, "children"> {
   variant?: "primary" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
   icon?: ReactNode;
@@ -15,8 +15,8 @@ const variantStyles = {
   primary:
     "bg-ember-gradient text-asphalt-950 shadow-glow hover:shadow-luxury-lg",
   outline:
-    "border border-cream-100/30 text-cream-50 hover:bg-cream-100/10 dark:border-cream-100/20",
-  ghost: "text-current hover:bg-steel-500/10",
+    "border border-asphalt-950/10 text-asphalt-950 hover:bg-asphalt-950/5 dark:border-cream-100/20 dark:text-cream-50 dark:hover:bg-cream-100/10",
+  ghost: "text-current hover:bg-black/5 dark:hover:bg-white/10",
 };
 
 const sizeStyles = {
@@ -44,7 +44,7 @@ export default function Button({
         sizeStyles[size],
         className
       )}
-      {...(props as any)}
+      {...props}
     >
       {children}
       {icon}

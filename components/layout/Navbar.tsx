@@ -7,6 +7,7 @@ import { Menu, X, Compass } from "lucide-react";
 import { navLinks } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
+import ThemeToggle from "@/components/layout/ThemeToggle";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -30,8 +31,8 @@ export default function Navbar() {
       className={cn(
         "fixed left-1/2 top-3 z-[60] w-[calc(100%-1rem)] max-w-7xl -translate-x-1/2 rounded-full border px-2 py-2.5 transition-all duration-300 sm:top-4 sm:w-[calc(100%-2rem)]",
         scrolled
-          ? "border-white/70 bg-white/90 text-asphalt-950 shadow-luxury backdrop-blur-xl"
-          : "border-white/15 bg-asphalt-950/45 text-cream-50 shadow-luxury-lg backdrop-blur-xl"
+          ? "border-black/10 bg-white/90 text-asphalt-950 shadow-luxury backdrop-blur-xl dark:border-white/15 dark:bg-asphalt-900/80 dark:text-cream-50"
+          : "border-black/10 bg-white/75 text-asphalt-950 shadow-luxury-lg backdrop-blur-xl dark:border-white/15 dark:bg-asphalt-950/65 dark:text-cream-50"
       )}
     >
       <a
@@ -47,12 +48,12 @@ export default function Navbar() {
             e.preventDefault();
             handleNavClick("#home");
           }}
-          className="flex items-center gap-2 font-heading text-xl font-bold text-current transition"
+          className="flex items-center gap-2 font-heading text-xl font-bold text-asphalt-950 transition dark:text-cream-50"
         >
           <Compass
             className={cn(
               "transition",
-              scrolled ? "text-ember-500" : "text-ember-400"
+              "text-ember-500"
             )}
             size={24}
           />
@@ -64,7 +65,7 @@ export default function Navbar() {
             <li key={link.href}>
               <button
                 onClick={() => handleNavClick(link.href)}
-                className="text-sm font-medium text-current/80 transition hover:text-ember-400"
+                className="text-sm font-medium text-asphalt-700 transition hover:text-ember-500 dark:text-cream-100/80"
               >
                 {link.label}
               </button>
@@ -72,17 +73,19 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
+          <ThemeToggle />
           <Button size="sm" onClick={() => handleNavClick("#contact")}>
             Work With Us
           </Button>
         </div>
 
-        <div className="flex items-center lg:hidden">
+        <div className="flex items-center gap-1 lg:hidden">
+          <ThemeToggle />
           <button
             aria-label="Toggle menu"
             onClick={() => setMobileOpen((v) => !v)}
-            className="rounded-full p-2 text-current transition hover:bg-white/10"
+            className="rounded-full p-2 text-asphalt-950 transition hover:bg-black/5 dark:text-cream-50 dark:hover:bg-white/10"
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -99,8 +102,8 @@ export default function Navbar() {
             className={cn(
               "mx-3 mt-3 overflow-hidden rounded-[24px] border backdrop-blur-xl lg:hidden",
               scrolled
-                ? "border-white/70 bg-white/90 text-asphalt-950 shadow-luxury"
-                : "border-white/15 bg-asphalt-950/90 text-cream-50 shadow-luxury-lg"
+                ? "border-black/10 bg-white/90 text-asphalt-950 shadow-luxury dark:border-white/15 dark:bg-asphalt-900/95 dark:text-cream-50"
+                : "border-black/10 bg-white/90 text-asphalt-950 shadow-luxury-lg dark:border-white/15 dark:bg-asphalt-950/95 dark:text-cream-50"
             )}
           >
             <ul className="flex flex-col gap-1 px-4 py-4 sm:px-5">
