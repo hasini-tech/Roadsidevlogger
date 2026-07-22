@@ -28,10 +28,10 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        "fixed left-1/2 top-3 z-[60] w-[calc(100%-1rem)] max-w-7xl -translate-x-1/2 rounded-full border px-2 py-2.5 transition-all duration-300 sm:top-4 sm:w-[calc(100%-2rem)]",
         scrolled
-          ? "bg-white/80 py-3 backdrop-blur-md shadow-luxury"
-          : "bg-transparent py-5"
+          ? "border-white/70 bg-white/90 text-asphalt-950 shadow-luxury backdrop-blur-xl"
+          : "border-white/15 bg-asphalt-950/45 text-cream-50 shadow-luxury-lg backdrop-blur-xl"
       )}
     >
       <a
@@ -40,16 +40,22 @@ export default function Navbar() {
       >
         Skip to content
       </a>
-      <nav className="container-luxe flex items-center justify-between">
+      <nav className="mx-auto flex w-full items-center justify-between gap-4 px-3 sm:px-5 lg:px-6">
         <Link
           href="#home"
           onClick={(e) => {
             e.preventDefault();
             handleNavClick("#home");
           }}
-          className="flex items-center gap-2 font-heading text-xl font-bold text-asphalt-950"
+          className="flex items-center gap-2 font-heading text-xl font-bold text-current transition"
         >
-          <Compass className="text-ember-500" size={24} />
+          <Compass
+            className={cn(
+              "transition",
+              scrolled ? "text-ember-500" : "text-ember-400"
+            )}
+            size={24}
+          />
           DDM<span className="text-ember-500">.</span>
         </Link>
 
@@ -58,7 +64,7 @@ export default function Navbar() {
             <li key={link.href}>
               <button
                 onClick={() => handleNavClick(link.href)}
-                className="text-sm font-medium text-asphalt-950/70 transition hover:text-ember-500"
+                className="text-sm font-medium text-current/80 transition hover:text-ember-400"
               >
                 {link.label}
               </button>
@@ -76,7 +82,7 @@ export default function Navbar() {
           <button
             aria-label="Toggle menu"
             onClick={() => setMobileOpen((v) => !v)}
-            className="rounded-full p-2 text-asphalt-950"
+            className="rounded-full p-2 text-current transition hover:bg-white/10"
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -90,14 +96,19 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="mt-4 overflow-hidden bg-white/95 backdrop-blur-md lg:hidden"
+            className={cn(
+              "mx-3 mt-3 overflow-hidden rounded-[24px] border backdrop-blur-xl lg:hidden",
+              scrolled
+                ? "border-white/70 bg-white/90 text-asphalt-950 shadow-luxury"
+                : "border-white/15 bg-asphalt-950/90 text-cream-50 shadow-luxury-lg"
+            )}
           >
-            <ul className="container-luxe flex flex-col gap-1 py-4">
+            <ul className="flex flex-col gap-1 px-4 py-4 sm:px-5">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <button
                     onClick={() => handleNavClick(link.href)}
-                    className="block w-full py-3 text-left font-medium text-asphalt-950"
+                    className="block w-full rounded-full py-3 text-left font-medium text-current transition hover:bg-ember-500/10"
                   >
                     {link.label}
                   </button>
