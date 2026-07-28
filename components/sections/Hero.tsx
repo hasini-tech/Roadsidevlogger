@@ -11,7 +11,7 @@ import {
 // ---------------------------------------------------------------------------
 // CONFIG
 // ---------------------------------------------------------------------------
-const VIDEO_SRC = "/video/video.mp4"; // served from /public/video
+const VIDEO_SRC = "/video/video2.mp4"; // served from /public/video
 
 export default function ScrollSequence() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -22,6 +22,11 @@ export default function ScrollSequence() {
   const lastDrawnTimeRef = useRef<number>(-1);
   const rafRef = useRef<number | null>(null);
   const durationRef = useRef<number>(0);
+  // Video seeks are async — only one can be "in flight" at a time. These two
+  // refs turn scroll updates into a queue instead of firing overlapping
+  // seeks, which is what was causing the frame to freeze.
+  const isSeekingRef = useRef<boolean>(false);
+  const pendingSeekRef = useRef<number | null>(null);
 
   const [isReady, setIsReady] = useState(false);
 
@@ -88,6 +93,25 @@ export default function ScrollSequence() {
     ctx.drawImage(video, offsetX, offsetY, drawW, drawH);
   }
 
+  // Only ever issues one seek at a time. If a new target comes in while a
+  // seek is still resolving, it replaces the pending target rather than
+  // stacking another seek on top — this is what keeps scrubbing responsive
+  // instead of freezing on the first frame it started seeking to.
+  function seekTo(time: number) {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isSeekingRef.current) {
+      pendingSeekRef.current = time;
+      return;
+    }
+
+    if (Math.abs(video.currentTime - time) < 0.01) return;
+
+    isSeekingRef.current = true;
+    video.currentTime = time;
+  }
+
   useMotionValueEvent(scrollYProgress, "change", (latest: number) => {
     const progress = Math.min(Math.max(latest, 0), 1);
     if (durationRef.current > 0) {
@@ -102,15 +126,49 @@ export default function ScrollSequence() {
     function onLoadedMetadata() {
       if (!video) return;
       durationRef.current = video.duration;
-      video.currentTime = 0;
+
+      // iOS/Safari (and some Android browsers) won't actually decode any
+      // frame data until the video has been played at least once, even
+      // muted — so a currentTime write before this "unlock" just silently
+      // does nothing and the canvas stays frozen on a blank/poster frame.
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.then === "function") {
+        playPromise
+          .then(() => {
+            video.pause();
+            video.currentTime = 0;
+          })
+          .catch(() => {
+            // Autoplay blocked — harmless here since we never intended
+            // continuous playback, only to unlock decoding for seeks.
+            video.currentTime = 0;
+          });
+      } else {
+        video.currentTime = 0;
+      }
+    }
+
+    function onSeeking() {
+      isSeekingRef.current = true;
     }
 
     function onSeeked() {
+      isSeekingRef.current = false;
       setIsReady(true);
       drawFrame();
+
+      // If the scroll position moved on while this seek was resolving,
+      // immediately chase the newest target instead of waiting for the
+      // next render-loop tick.
+      if (pendingSeekRef.current !== null) {
+        const next = pendingSeekRef.current;
+        pendingSeekRef.current = null;
+        seekTo(next);
+      }
     }
 
     video.addEventListener("loadedmetadata", onLoadedMetadata);
+    video.addEventListener("seeking", onSeeking);
     video.addEventListener("seeked", onSeeked);
     video.load();
 
@@ -128,15 +186,12 @@ export default function ScrollSequence() {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Scrub loop: nudge video.currentTime toward the scroll-derived target
-    // and redraw only when it actually changes, so we don't hammer seeks.
+    // Scrub loop: only ASKS for a seek toward the scroll-derived target —
+    // seekTo() itself decides whether that's safe to issue right now.
     function renderLoop() {
       const v = videoRef.current;
       if (v && v.readyState >= 2) {
-        const target = targetTimeRef.current;
-        if (Math.abs(v.currentTime - target) > 0.033) {
-          v.currentTime = target;
-        }
+        seekTo(targetTimeRef.current);
         if (Math.abs(lastDrawnTimeRef.current - v.currentTime) > 0.0001) {
           lastDrawnTimeRef.current = v.currentTime;
           drawFrame();
@@ -148,6 +203,7 @@ export default function ScrollSequence() {
 
     return () => {
       video.removeEventListener("loadedmetadata", onLoadedMetadata);
+      video.removeEventListener("seeking", onSeeking);
       video.removeEventListener("seeked", onSeeked);
       window.removeEventListener("resize", resizeCanvas);
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
@@ -190,69 +246,76 @@ export default function ScrollSequence() {
           </div>
         )}
 
-        <div className="pointer-events-none absolute left-6 top-6 z-10 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-cream-50/90 mix-blend-difference sm:left-8 sm:top-8">
+        {/* Brand mark — scaled down on mobile */}
+        <div className="pointer-events-none absolute left-4 top-4 z-10 flex items-center gap-1.5 text-[9px] font-semibold uppercase tracking-[0.25em] text-cream-50/90 mix-blend-difference sm:left-8 sm:top-8 sm:gap-2 sm:text-[11px] sm:tracking-[0.35em]">
           <span className="h-1.5 w-1.5 rounded-full bg-ember-400" />
           Divith Digital Marketing
         </div>
 
-        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-[3px] bg-white/10">
+        {/* Scroll progress rail — hidden on small screens so it doesn't crowd the stacked text boxes */}
+        <div className="pointer-events-none absolute right-0 top-0 z-10 hidden h-full w-[3px] bg-white/10 sm:block">
           <motion.div
             style={{ height: progressHeight }}
             className="w-full bg-ember-400"
           />
         </div>
 
+        {/* Scroll cue */}
         <motion.div
           style={{ opacity: cueOpacity }}
-          className="pointer-events-none absolute bottom-7 left-1/2 z-10 -translate-x-1/2 text-[10px] font-semibold uppercase tracking-[0.35em] text-cream-50/50"
+          className="pointer-events-none absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-[9px] font-semibold uppercase tracking-[0.3em] text-cream-50/50 sm:bottom-7 sm:text-[10px] sm:tracking-[0.35em]"
         >
           Scroll to explore
         </motion.div>
 
+        {/* Copy box 01 — full-width centered stack on mobile, left-anchored from sm: up */}
         <motion.div
           style={{ opacity: box1Opacity, y: box1Y }}
-          className="pointer-events-none absolute left-[6%] top-[22%] z-10 max-w-sm rounded-2xl border border-white/20 bg-black/25 p-6 text-cream-50 backdrop-blur-md"
+          className="pointer-events-none absolute inset-x-4 top-[18%] z-10 mx-auto max-w-sm rounded-2xl border border-white/20 bg-black/25 p-5 text-center text-cream-50 backdrop-blur-md sm:inset-x-auto sm:left-[6%] sm:top-[22%] sm:mx-0 sm:p-6 sm:text-left"
         >
-          <span className="mb-3 inline-block text-[11px] font-bold uppercase tracking-[0.35em] text-ember-400">
+          <span className="mb-2 inline-block text-[10px] font-bold uppercase tracking-[0.3em] text-ember-400 sm:mb-3 sm:text-[11px] sm:tracking-[0.35em]">
             01 — Strategy
           </span>
-          <h3 className="mb-3 font-heading text-2xl font-extrabold uppercase leading-[1.05] tracking-tight">
+          <h3 className="mb-2 font-heading text-xl font-extrabold uppercase leading-[1.05] tracking-tight sm:mb-3 sm:text-2xl">
             Strategy First
           </h3>
-          <p className="text-sm leading-relaxed text-cream-100/75">
+          <p className="text-xs leading-relaxed text-cream-100/75 sm:text-sm">
             Every campaign starts with data, not guesswork. We map the
             audience, the channel, and the moment before a single asset
             gets made.
           </p>
         </motion.div>
 
+        {/* Copy box 02 — full-width centered stack on mobile, right-anchored from sm: up */}
         <motion.div
           style={{ opacity: box2Opacity, y: box2Y }}
-          className="pointer-events-none absolute right-[6%] top-[42%] z-10 max-w-sm rounded-2xl border border-white/20 bg-black/25 p-6 text-right text-cream-50 backdrop-blur-md"
+          className="pointer-events-none absolute inset-x-4 top-[40%] z-10 mx-auto max-w-sm rounded-2xl border border-white/20 bg-black/25 p-5 text-center text-cream-50 backdrop-blur-md sm:inset-x-auto sm:right-[6%] sm:top-[42%] sm:mx-0 sm:p-6 sm:text-right"
         >
-          <span className="mb-3 inline-block text-[11px] font-bold uppercase tracking-[0.35em] text-ember-400">
+          <span className="mb-2 inline-block text-[10px] font-bold uppercase tracking-[0.3em] text-ember-400 sm:mb-3 sm:text-[11px] sm:tracking-[0.35em]">
             02 — Creative
           </span>
-          <h3 className="mb-3 font-heading text-2xl font-extrabold uppercase leading-[1.05] tracking-tight">
+          <h3 className="mb-2 font-heading text-xl font-extrabold uppercase leading-[1.05] tracking-tight sm:mb-3 sm:text-2xl">
             Creative That Converts
           </h3>
-          <p className="text-sm leading-relaxed text-cream-100/75">
+          <p className="text-xs leading-relaxed text-cream-100/75 sm:text-sm">
             Design and storytelling built to move people, not just
             impressions. Every frame earns its place in the funnel.
           </p>
         </motion.div>
 
+        {/* Copy box 03 — inset-x + mx-auto centering (not left-1/2/-translate-x-1/2, which
+            Framer Motion's own y-transform inline style would otherwise override) */}
         <motion.div
           style={{ opacity: box3Opacity, y: box3Y }}
-          className="pointer-events-none absolute bottom-[12%] left-1/2 z-10 max-w-sm -translate-x-1/2 rounded-2xl border border-white/20 bg-black/25 p-6 text-center text-cream-50 backdrop-blur-md"
+          className="pointer-events-none absolute inset-x-4 bottom-[10%] z-10 mx-auto max-w-sm rounded-2xl border border-white/20 bg-black/25 p-5 text-center text-cream-50 backdrop-blur-md sm:bottom-[12%] sm:p-6"
         >
-          <span className="mb-3 inline-block text-[11px] font-bold uppercase tracking-[0.35em] text-ember-400">
+          <span className="mb-2 inline-block text-[10px] font-bold uppercase tracking-[0.3em] text-ember-400 sm:mb-3 sm:text-[11px] sm:tracking-[0.35em]">
             03 — Results
           </span>
-          <h3 className="mb-3 font-heading text-2xl font-extrabold uppercase leading-[1.05] tracking-tight">
+          <h3 className="mb-2 font-heading text-xl font-extrabold uppercase leading-[1.05] tracking-tight sm:mb-3 sm:text-2xl">
             Measurable Impact
           </h3>
-          <p className="text-sm leading-relaxed text-cream-100/75">
+          <p className="text-xs leading-relaxed text-cream-100/75 sm:text-sm">
             We track what matters and prove the ROI, every time. No vanity
             metrics — just numbers you can take to the board.
           </p>
