@@ -11,7 +11,11 @@ import {
 // ---------------------------------------------------------------------------
 // CONFIG
 // ---------------------------------------------------------------------------
-const VIDEO_SRC = "/video/video2.mp4"; // served from /public/video
+const VIDEO_SRC_DESKTOP = "/video/video2.mp4";
+const VIDEO_SRC_MOBILE = "/video/videomobile.mp4";
+
+// Matches Tailwind's `sm` breakpoint (640px) used elsewhere in this component.
+const MOBILE_BREAKPOINT_QUERY = "(max-width: 639px)";
 
 export default function ScrollSequence() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -29,6 +33,29 @@ export default function ScrollSequence() {
   const pendingSeekRef = useRef<number | null>(null);
 
   const [isReady, setIsReady] = useState(false);
+
+  // Computed lazily (not in an effect) so the very first render already
+  // requests the right file instead of briefly requesting desktop and
+  // swapping — avoids a wasted download / flash on mobile.
+  const [videoSrc, setVideoSrc] = useState<string>(() => {
+    if (typeof window === "undefined") return VIDEO_SRC_DESKTOP;
+    return window.matchMedia(MOBILE_BREAKPOINT_QUERY).matches
+      ? VIDEO_SRC_MOBILE
+      : VIDEO_SRC_DESKTOP;
+  });
+
+  // Keep the source in sync if the viewport crosses the breakpoint
+  // (e.g. rotating a tablet, resizing a browser window).
+  useEffect(() => {
+    const mql = window.matchMedia(MOBILE_BREAKPOINT_QUERY);
+
+    function handleChange(e: MediaQueryListEvent | MediaQueryList) {
+      setVideoSrc(e.matches ? VIDEO_SRC_MOBILE : VIDEO_SRC_DESKTOP);
+    }
+
+    mql.addEventListener("change", handleChange);
+    return () => mql.removeEventListener("change", handleChange);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -119,9 +146,18 @@ export default function ScrollSequence() {
     }
   });
 
+  // Re-runs whenever `videoSrc` changes (desktop <-> mobile swap), so the
+  // new source gets its own metadata load, seek-unlock, and render loop.
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+
+    // Reset state for the incoming source.
+    setIsReady(false);
+    durationRef.current = 0;
+    lastDrawnTimeRef.current = -1;
+    isSeekingRef.current = false;
+    pendingSeekRef.current = null;
 
     function onLoadedMetadata() {
       if (!video) return;
@@ -209,7 +245,7 @@ export default function ScrollSequence() {
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [videoSrc]);
 
   return (
     <section
@@ -221,7 +257,7 @@ export default function ScrollSequence() {
         {/* Hidden source video — never rendered directly, only drawn to canvas */}
         <video
           ref={videoRef}
-          src={VIDEO_SRC}
+          src={videoSrc}
           className="hidden"
           muted
           playsInline
