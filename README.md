@@ -6,8 +6,7 @@ Lucide React.
 
 ## Design system
 
-- **Palette:** asphalt (near-black), cream (warm off-white), ember
-  (sunset-orange accent), gold (secondary accent), steel (muted blue-gray).
+- **Palette:** black with a `#FA003F` brand accent and neutral grays.
 - **Type:** Poppins for headings, Inter for body copy.
 - **Signature motif:** numbered "mile markers" used in the travel timeline,
   echoing real highway distance markers.

@@ -12,32 +12,32 @@ const config: Config = {
       colors: {
         // Core brand palette — "roadside at dusk"
         asphalt: {
-          950: "#0B0D10",
-          900: "#12151A",
-          800: "#1B1F26",
-          700: "#262B33",
+          950: "#000000",
+          900: "#0A0A0A",
+          800: "#141414",
+          700: "#222222",
         },
         cream: {
-          50: "#FBF9F5",
-          100: "#F6F3EC",
-          200: "#EFEADF",
+          50: "#FFFFFF",
+          100: "#F7F7F7",
+          200: "#EDEDED",
         },
         ember: {
-          400: "#FF8A5C",
-          500: "#FF6B35",
-          600: "#E8532088",
-          700: "#C4441C",
+          400: "#FA003F",
+          500: "#FA003F",
+          600: "#FA003FCC",
+          700: "#FA003F",
         },
         gold: {
-          300: "#F0CC85",
-          400: "#E8B14D",
-          500: "#D19A34",
+          300: "#FA003F",
+          400: "#FA003F",
+          500: "#FA003F",
         },
         steel: {
-          300: "#8A99A8",
-          400: "#5C6B79",
-          500: "#3A4750",
-          600: "#2A343C",
+          300: "#A3A3A3",
+          400: "#737373",
+          500: "#525252",
+          600: "#404040",
         },
       },
       fontFamily: {
@@ -46,13 +46,13 @@ const config: Config = {
       },
       backgroundImage: {
         "horizon-gradient":
-          "linear-gradient(180deg, rgba(11,13,16,0) 0%, rgba(11,13,16,0.6) 60%, rgba(11,13,16,0.95) 100%)",
-        "ember-gradient": "linear-gradient(135deg, #FF6B35 0%, #E8B14D 100%)",
+          "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.95) 100%)",
+        "ember-gradient": "linear-gradient(135deg, #FA003F 0%, #FA003F 100%)",
       },
       boxShadow: {
-        luxury: "0 20px 60px -15px rgba(11,13,16,0.35)",
-        "luxury-lg": "0 30px 90px -20px rgba(11,13,16,0.45)",
-        glow: "0 0 40px rgba(255,107,53,0.35)",
+        luxury: "0 20px 60px -15px rgba(0,0,0,0.35)",
+        "luxury-lg": "0 30px 90px -20px rgba(0,0,0,0.45)",
+        glow: "0 0 40px rgba(250,0,63,0.35)",
       },
       keyframes: {
         marquee: {

@@ -5,7 +5,7 @@ export default function BrandsCarousel() {
 
   return (
     <section className="relative isolate overflow-hidden border-y border-black/5 bg-cream-50/80 py-14 dark:border-white/5 dark:bg-asphalt-900/70">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,107,53,0.08),transparent_55%)] dark:bg-[radial-gradient(circle_at_top,rgba(255,107,53,0.12),transparent_55%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(250,0,63,0.08),transparent_55%)] dark:bg-[radial-gradient(circle_at_top,rgba(250,0,63,0.12),transparent_55%)]" />
 
       <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-cream-50/95 via-cream-50/80 to-transparent dark:from-asphalt-900 dark:via-asphalt-900/90" />

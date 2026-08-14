@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 :root {
-  --bg: 246 243 236; /* cream-100 */
+  --bg: 247 247 247; /* cream-100 */
   --bg-elevated: 255 255 255;
-  --fg: 11 13 16; /* asphalt-950 */
-  --fg-muted: 58 71 80; /* steel-500 */
-  --border: 239 234 223;
+  --fg: 0 0 0; /* asphalt-950 */
+  --fg-muted: 82 82 82; /* steel-500 */
+  --border: 237 237 237;
 }
 
 .dark {
-  --bg: 11 13 16;
-  --bg-elevated: 18 21 26;
-  --fg: 246 243 236;
-  --fg-muted: 138 153 168;
-  --border: 38 43 51;
+  --bg: 0 0 0;
+  --bg-elevated: 10 10 10;
+  --fg: 255 255 255;
+  --fg-muted: 163 163 163;
+  --border: 34 34 34;
 }
 
 * {
@@ -38,8 +38,8 @@ body {
 }
 
 ::selection {
-  background-color: #ff6b35;
-  color: #fbf9f5;
+  background-color: #fa003f;
+  color: #ffffff;
 }
 
 ::-webkit-scrollbar {
@@ -54,7 +54,7 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid #ff6b35;
+  outline: 2px solid #fa003f;
   outline-offset: 3px;
 }
 

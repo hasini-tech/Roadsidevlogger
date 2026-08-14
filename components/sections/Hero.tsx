@@ -11,8 +11,8 @@ import {
 // ---------------------------------------------------------------------------
 // CONFIG
 // ---------------------------------------------------------------------------
-const VIDEO_SRC_DESKTOP = "/video/video2.mp4";
-const VIDEO_SRC_MOBILE = "/video/videomobile.mp4";
+const VIDEO_SRC_DESKTOP = "/video/desktop_roadside.mp4";
+const VIDEO_SRC_MOBILE = "/video/mobile_roadside.mp4";
 
 // Matches Tailwind's `sm` breakpoint (640px) used elsewhere in this component.
 const MOBILE_BREAKPOINT_QUERY = "(max-width: 639px)";
