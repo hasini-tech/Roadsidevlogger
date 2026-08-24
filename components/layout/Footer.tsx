@@ -12,8 +12,8 @@ const socials = [
 export default function Footer() {
   return (
     <footer className="border-t border-steel-500/10 bg-asphalt-950 text-cream-100">
-      <div className="container-luxe grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
-        <div>
+      <div className="container-luxe grid gap-10 py-12 text-center sm:grid-cols-2 sm:py-16 sm:text-left lg:grid-cols-4">
+        <div className="flex flex-col items-center sm:items-start">
           <Link
             href="#home"
             className="flex items-center gap-2 font-heading text-xl font-bold text-cream-50"
@@ -49,7 +49,9 @@ export default function Footer() {
           </h3>
           <ul className="mt-4 space-y-3 text-sm text-cream-100/60">
             <li>hello@divithdigitalmarketing.com</li>
-            <li>Brand strategy, social media, content, and performance campaigns</li>
+            <li className="mx-auto max-w-xs sm:mx-0">
+              Brand strategy, social media, content, and performance campaigns
+            </li>
           </ul>
         </div>
 
@@ -57,7 +59,7 @@ export default function Footer() {
           <h3 className="font-heading text-sm font-semibold uppercase tracking-wider text-cream-50">
             Follow DDM
           </h3>
-          <div className="mt-4 flex gap-3">
+          <div className="mt-4 flex justify-center gap-3 sm:justify-start">
             {socials.map(({ icon: Icon, href, label }) => (
               <a
                 key={label}
@@ -75,9 +77,15 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-cream-100/10 py-6">
-        <p className="container-luxe text-center text-xs text-cream-100/40">
-          &copy; {new Date().getFullYear()} Divith Digital Marketing. All rights reserved.
-        </p>
+        <div className="container-luxe flex flex-col items-center justify-between gap-3 text-center text-xs text-cream-100/40 sm:flex-row sm:text-left">
+          <p>
+            &copy; {new Date().getFullYear()} Divith Digital Marketing. All
+            rights reserved.
+          </p>
+          <p className="font-medium text-cream-100/55">
+            Powered by Techvaseegrah
+          </p>
+        </div>
       </div>
     </footer>
   );

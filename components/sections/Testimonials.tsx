@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+// import Image from "next/image";
 import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { testimonials } from "@/lib/data";
@@ -55,7 +55,7 @@ export default function Testimonials() {
               </div>
 
               <div className="mt-6 flex flex-col items-center gap-4">
-                <div className="relative h-14 w-14 overflow-hidden rounded-full">
+                {/* <div className="relative h-14 w-14 overflow-hidden rounded-full">
                   <Image
                     src={active.avatar}
                     alt={active.name}
@@ -63,7 +63,7 @@ export default function Testimonials() {
                     sizes="56px"
                     className="object-cover"
                   />
-                </div>
+                </div> */}
                 <div>
                   <p className="font-heading text-base font-semibold text-asphalt-950 dark:text-cream-50">
                     {active.name}

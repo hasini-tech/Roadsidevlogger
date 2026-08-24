@@ -5,7 +5,6 @@ import Timeline from "@/components/sections/Timeline";
 import Gallery from "@/components/sections/Gallery";
 import YouTubeSection from "@/components/sections/YouTubeSection";
 import BrandsCarousel from "@/components/sections/BrandsCarousel";
-import Testimonials from "@/components/sections/Testimonials";
 import Blog from "@/components/sections/Blog";
 import Contact from "@/components/sections/Contact";
 
@@ -19,7 +18,6 @@ export default function HomePage() {
       <Gallery />
       <YouTubeSection />
       <BrandsCarousel />
-      <Testimonials />
       <Blog />
       <Contact />
     </>
