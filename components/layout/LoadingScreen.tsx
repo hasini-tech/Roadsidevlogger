@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Compass } from "lucide-react";
+import { Camera } from "lucide-react";
 
 export default function LoadingScreen() {
   const [loading, setLoading] = useState(true);
@@ -22,10 +22,10 @@ export default function LoadingScreen() {
           className="fixed inset-0 z-[200] flex flex-col items-center justify-center gap-6 bg-asphalt-950"
         >
           <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            animate={{ scale: [1, 1.08, 1] }}
+            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <Compass className="text-ember-500" size={48} />
+            <Camera className="text-ember-500" size={48} />
           </motion.div>
           <motion.p
             initial={{ opacity: 0 }}
