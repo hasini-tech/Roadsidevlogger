@@ -1,10 +1,12 @@
+import Image from "next/image";
+
 import { brands } from "@/lib/data";
 
 export default function BrandsCarousel() {
   const doubled = [...brands, ...brands];
 
   return (
-    <section className="relative isolate overflow-hidden border-y border-black/5 bg-cream-50/80 py-14 dark:border-white/5 dark:bg-asphalt-900/70">
+    <section className="relative isolate overflow-hidden border-y border-black/5 bg-cream-50/80 py-6 dark:border-white/5 dark:bg-asphalt-900/70">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(250,0,63,0.08),transparent_55%)] dark:bg-[radial-gradient(circle_at_top,rgba(250,0,63,0.12),transparent_55%)]" />
 
       <div className="relative overflow-hidden">
@@ -15,9 +17,15 @@ export default function BrandsCarousel() {
           {doubled.map((brand, i) => (
             <div
               key={`${brand.id}-${i}`}
-              className="flex shrink-0 items-center justify-center font-heading text-3xl font-bold tracking-tight text-asphalt-950/30 transition hover:text-asphalt-950/70 dark:text-cream-50/45 dark:hover:text-cream-50/85"
+              className="flex h-14 w-44 shrink-0 items-center justify-center"
             >
-              {brand.name}
+              <Image
+                src={brand.logo}
+                alt={brand.name}
+                width={180}
+                height={80}
+                className="max-h-12 w-auto object-contain opacity-70 transition hover:opacity-100"
+              />
             </div>
           ))}
         </div>

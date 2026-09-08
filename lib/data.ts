@@ -289,12 +289,11 @@ export const blogPosts: BlogPost[] = [
 ];
 
 export const brands: Brand[] = [
-  { id: "br1", name: "Restaurants", logo: "" },
-  { id: "br2", name: "Retail", logo: "" },
-  { id: "br3", name: "Jewelry", logo: "" },
-  { id: "br4", name: "Real Estate", logo: "" },
-  { id: "br5", name: "Manufacturing", logo: "" },
-  { id: "br6", name: "Multiplex Cinemas", logo: "" },
+  { id: "br1", name: "Logo", logo: "/images/logo.png" },
+  { id: "br2", name: "Logo 2", logo: "/images/logo2.png" },
+  { id: "br3", name: "Logo 3", logo: "/images/logo3.png" },
+  { id: "br4", name: "Logo 4", logo: "/images/logo4.png" },
+  { id: "br5", name: "Tech V Logo", logo: "/images/tech-v-logo.png" },
 ];
 
 export const youtubeStats = {
