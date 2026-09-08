@@ -7,6 +7,8 @@ import Footer from "@/components/layout/Footer";
 import ScrollProgress from "@/components/layout/ScrollProgress";
 import BackToTop from "@/components/layout/BackToTop";
 import LoadingScreen from "@/components/layout/LoadingScreen";
+import ChatbotWidget from "@/components/chat/ChatbotWidget";
+
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -76,6 +78,7 @@ export default function RootLayout({
           <main id="main-content">{children}</main>
           <Footer />
           <BackToTop />
+          <ChatbotWidget />
         </ThemeProvider>
       </body>
     </html>

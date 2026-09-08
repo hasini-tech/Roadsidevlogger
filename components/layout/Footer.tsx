@@ -49,6 +49,10 @@ export default function Footer() {
           </h3>
           <ul className="mt-4 space-y-3 text-sm text-cream-100/60">
             <li>hello@divithdigitalmarketing.com</li>
+            <li>96264 11111</li>
+            <li className="mx-auto max-w-xs sm:mx-0">
+              58 Balaji Nagar, Vallam, Thanjavur
+            </li>
             <li className="mx-auto max-w-xs sm:mx-0">
               Brand strategy, social media, content, and performance campaigns
             </li>

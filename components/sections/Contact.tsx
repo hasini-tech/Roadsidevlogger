@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Send, CheckCircle2, Instagram, Youtube, Twitter } from "lucide-react";
+import { Mail, MapPin, Phone, Send, CheckCircle2, Instagram, Youtube, Twitter } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 
@@ -138,8 +138,8 @@ export default function Contact() {
           >
             <div className="overflow-hidden rounded-2xl shadow-luxury">
               <iframe
-                title="Divith Digital Marketing location map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.999!2d-9.1393!3d38.7223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDQzJzIwLjMiTiA5wrA4JzIxLjUiVw!5e0!3m2!1sen!2spt"
+                title="Divith Digital Marketing office location in Vallam, Thanjavur"
+                src="https://www.google.com/maps?q=58+Balaji+Nagar,+Vallam,+Thanjavur&output=embed"
                 width="100%"
                 height="260"
                 style={{ border: 0 }}
@@ -168,14 +168,31 @@ export default function Contact() {
 
               <div className="mt-6 flex items-start gap-4">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ember-500/10 text-ember-500">
+                  <Phone size={20} />
+                </div>
+                <div>
+                  <p className="font-heading font-semibold text-asphalt-950 dark:text-cream-50">
+                    Phone
+                  </p>
+                  <a
+                    href="tel:9626411111"
+                    className="text-steel-500 transition hover:text-ember-500 dark:text-steel-300"
+                  >
+                    96264 11111
+                  </a>
+                </div>
+              </div>
+
+              <div className="mt-6 flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ember-500/10 text-ember-500">
                   <MapPin size={20} />
                 </div>
                 <div>
                   <p className="font-heading font-semibold text-asphalt-950 dark:text-cream-50">
-                    Available For
+                    Address
                   </p>
                   <p className="text-steel-500 dark:text-steel-300">
-                    Brand strategy, social media marketing, content creation, video production, and performance campaigns
+                    58 Balaji Nagar, Vallam, Thanjavur
                   </p>
                 </div>
               </div>
